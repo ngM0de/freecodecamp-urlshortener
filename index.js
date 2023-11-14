@@ -1,7 +1,7 @@
 import dotenv from "dotenv"
 import express from "express";
 import cors from "cors"
-import {nanoid} from "nanoid"
+import shortId from 'shortid'
 import bodyParser from "body-parser";
 import cookieParser from 'cookie-parser'
 import {mongoConnect, UrlsModel} from "./db.js";
@@ -33,9 +33,8 @@ app.get('/api/hello', function (req, res) {
 
 app.post('/api/shorturl', (req, res) => {
     const isUrlValid = urlValidator.isHttpUri(req.body.url) || urlValidator.isHttpsUri(req.body.url);
-    console.log(isUrlValid)
     if (isUrlValid) {
-        const response = {original_url: req.body.url, short_url: nanoid(4)}
+        const response = {original_url: req.body.url, short_url: shortId.generate()}
         const payload = new UrlsModel(response)
         payload.save().then(queryResult => {
             res.json(response)
