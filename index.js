@@ -1,11 +1,11 @@
-import dotenv from "dotenv"
-import express from "express";
-import cors from "cors"
-import shortId from 'shortid'
-import bodyParser from "body-parser";
-import cookieParser from 'cookie-parser'
-import {mongoConnect, UrlsModel} from "./db.js";
-import urlValidator from "valid-url"
+const dotenv = require("dotenv")
+const express = require("express");
+const cors = require("cors")
+const shortId = require('shortid')
+const bodyParser = require("body-parser");
+const cookieParser = require('cookie-parser')
+const {mongoConnect, UrlsModel} = require("./db.js");
+const urlValidator = require("valid-url")
 
 dotenv.config()
 
